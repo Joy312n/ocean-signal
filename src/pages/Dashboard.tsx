@@ -102,79 +102,89 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gradient-hero smooth-scroll">
       <GlassNavigation />
       
-      {/* Hero Section with Parallax */}
-      <section ref={heroRef} className="pt-24 pb-16 px-4 parallax-container">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 z-10 relative">
-              <div className="animate-fade-in-up">
-                <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                  Ocean Safety
-                  <span className="block text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
-                    Monitoring System
-                  </span>
-                </h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  Advanced crowdsourced reporting and AI-powered social media analytics 
-                  for real-time ocean hazard detection and disaster management.
-                </p>
-              </div>
-              
-              <div className="flex flex-wrap gap-4 animate-slide-in-right">
-                <Button 
-                  variant="hero" 
-                  size="xl" 
-                  className="group tile-interactive"
-                  onClick={() => navigate('/report')}
-                >
-                  <AlertTriangle className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                  Report Emergency
-                </Button>
-                <Button 
-                  variant="glass" 
-                  size="xl" 
-                  className="tile-interactive"
-                  onClick={() => navigate('/analytics')}
-                >
-                  <BarChart3 className="mr-2 h-5 w-5" />
-                  View Analytics
-                </Button>
-              </div>
-            </div>
-            
-            {/* Parallax Hero Image */}
-            <div 
-              className="relative parallax-element"
-              style={{
-                transform: `translateY(${scrollY * 0.3}px) scale(${1 + scrollY * 0.0002})`
-              }}
-            >
-              <div className="relative overflow-hidden rounded-3xl glass-panel">
-                <img
-                  src={heroImage}
-                  alt="Ocean monitoring system"
-                  className="w-full h-[500px] object-cover transition-transform duration-700 ease-out hover:scale-110"
-                  style={{
-                    transform: `translateY(${scrollY * -0.1}px)`
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
+      {/* Full Screen Hero Section with Parallax */}
+      <section ref={heroRef} className="relative h-screen overflow-hidden parallax-container">
+        {/* Full Screen Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 parallax-element"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0003})`
+          }}
+        >
+          <img
+            src={heroImage}
+            alt="Ocean monitoring system"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.2}px) scale(1.1)`
+            }}
+          />
+          {/* Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-background/60 to-transparent"></div>
+        </div>
+        
+        {/* Content Overlay */}
+        <div className="relative z-10 h-full flex items-center">
+          <div className="max-w-7xl mx-auto px-4 w-full">
+            <div className="max-w-4xl">
+              <div className="space-y-8">
+                <div className="animate-fade-in-up">
+                  <h1 className="text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight">
+                    Ocean Safety
+                    <span className="block text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
+                      Monitoring System
+                    </span>
+                  </h1>
+                  <p className="text-2xl lg:text-3xl text-white/90 mb-12 leading-relaxed max-w-3xl">
+                    Advanced crowdsourced reporting and AI-powered social media analytics 
+                    for real-time ocean hazard detection and disaster management.
+                  </p>
+                </div>
                 
-                {/* Floating Elements */}
-                <div 
-                  className="absolute top-4 right-4 glass-panel p-3 rounded-xl animate-float"
-                  style={{ animationDelay: '0.5s' }}
-                >
-                  <Waves className="h-6 w-6 text-primary" />
-                </div>
-                <div 
-                  className="absolute bottom-4 left-4 glass-panel p-3 rounded-xl animate-float"
-                  style={{ animationDelay: '1s' }}
-                >
-                  <Shield className="h-6 w-6 text-accent" />
+                <div className="flex flex-wrap gap-6 animate-slide-in-right">
+                  <Button 
+                    variant="hero" 
+                    size="xl" 
+                    className="group tile-interactive text-lg px-8 py-4 h-auto"
+                    onClick={() => navigate('/report')}
+                  >
+                    <AlertTriangle className="mr-3 h-6 w-6 group-hover:animate-pulse" />
+                    Report Emergency
+                  </Button>
+                  <Button 
+                    variant="glass" 
+                    size="xl" 
+                    className="tile-interactive text-lg px-8 py-4 h-auto bg-white/10 backdrop-blur-xl text-white border-white/20 hover:bg-white/20"
+                    onClick={() => navigate('/analytics')}
+                  >
+                    <BarChart3 className="mr-3 h-6 w-6" />
+                    View Analytics
+                  </Button>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        
+        {/* Floating UI Elements */}
+        <div 
+          className="absolute top-8 right-8 glass-panel p-4 rounded-2xl animate-float z-20"
+          style={{ animationDelay: '0.5s' }}
+        >
+          <Waves className="h-8 w-8 text-primary" />
+        </div>
+        <div 
+          className="absolute bottom-8 left-8 glass-panel p-4 rounded-2xl animate-float z-20"
+          style={{ animationDelay: '1s' }}
+        >
+          <Shield className="h-8 w-8 text-accent" />
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
